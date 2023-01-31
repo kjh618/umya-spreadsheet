@@ -268,6 +268,9 @@ fn read_and_wite_method(book: &mut umya_spreadsheet::Spreadsheet) {
         .get_style_mut()
         .get_font_mut()
         .set_name("Arial");
+
+        book.get_sheet_by_name_mut("Sheet1").unwrap().get_row_dimension_mut(&3).set_height(46.0);
+    
 }
 
 #[test]
@@ -389,7 +392,8 @@ fn read_and_wite_xlsm_method(book: &mut umya_spreadsheet::Spreadsheet) {
         .set_default_language("ja-JP")
         .set_title("Chart Title")
         .set_horizontal_title("Horizontal Title")
-        .set_vertical_title("Vertical Title");
+        .set_vertical_title("Vertical Title")
+        .set_grouping(umya_spreadsheet::drawing::charts::GroupingValues::Standard);
     book.get_sheet_by_name_mut("Sheet7")
         .unwrap()
         .add_chart(chart);
